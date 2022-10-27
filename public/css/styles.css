@@ -1,0 +1,8 @@
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color:green !important;
+}
+.outl {
+    /* outline-style: solid; */
+    border: 4px solid green !important;
+}
