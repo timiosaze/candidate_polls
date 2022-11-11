@@ -15,12 +15,15 @@ class StatesPoll extends Component
     public $ids;
     public $names;
     public $values;
-
+    public $reasons = [];
+    public $cardModal = false;
+    public $selectedState;
     public function mount()
     {
        $this->states = json_decode(json_encode(StateResource::collection(State::all()), true), true);
        foreach ($this->states as $state){
             $state = (array) $state;
+            array_push($this->reasons, '');
        }
     }
 
@@ -32,6 +35,20 @@ class StatesPoll extends Component
             'icon'        => $icon,
             'timeout'     => 2000
         ]);    
+    }
+
+    public function showModal($state)
+    {
+        $this->selectedState = $state;
+        $this->cardModal = true;
+        // dd($this->selectedState);
+    }
+
+    public function save()
+    {
+        $this->cardModal = false;
+        // dd($this->reasons);
+
     }
 
     public function submit()

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7bf67205a7cca496c01d4ad0f6ca3895",
+    "content-hash": "864d28631a0919de4e063ffce2496932",
     "packages": [
         {
             "name": "brick/math",
@@ -1905,6 +1905,60 @@
                 }
             ],
             "time": "2022-05-18T15:52:06+00:00"
+        },
+        {
+            "name": "mailchimp/transactional",
+            "version": "1.0.48",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mailchimp/mailchimp-transactional-php.git",
+                "reference": "c30a2fd0da06c1a59a491700cfb104d82b125341"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mailchimp/mailchimp-transactional-php/zipball/c30a2fd0da06c1a59a491700cfb104d82b125341",
+                "reference": "c30a2fd0da06c1a59a491700cfb104d82b125341",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "guzzlehttp/guzzle": "^6.4 || ^7.2",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2.12",
+                "phpunit/phpunit": "^7",
+                "squizlabs/php_codesniffer": "~2.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MailchimpTransactional\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mailchimp",
+                    "homepage": "https://github.com/mailchimp/mailchimp-transactional-php"
+                }
+            ],
+            "homepage": "http://swagger.io",
+            "keywords": [
+                "api",
+                "php",
+                "sdk",
+                "swagger"
+            ],
+            "support": {
+                "source": "https://github.com/mailchimp/mailchimp-transactional-php/tree/v1.0.48"
+            },
+            "time": "2022-10-05T17:22:42+00:00"
         },
         {
             "name": "mckenziearts/laravel-notify",
@@ -4173,6 +4227,171 @@
             "time": "2022-07-29T07:42:06+00:00"
         },
         {
+            "name": "symfony/http-client",
+            "version": "v6.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/http-client.git",
+                "reference": "f515d066728774efb34347a87580621416ca8968"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/f515d066728774efb34347a87580621416ca8968",
+                "reference": "f515d066728774efb34347a87580621416ca8968",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "psr/log": "^1|^2|^3",
+                "symfony/http-client-contracts": "^3",
+                "symfony/service-contracts": "^1.0|^2|^3"
+            },
+            "provide": {
+                "php-http/async-client-implementation": "*",
+                "php-http/client-implementation": "*",
+                "psr/http-client-implementation": "1.0",
+                "symfony/http-client-implementation": "3.0"
+            },
+            "require-dev": {
+                "amphp/amp": "^2.5",
+                "amphp/http-client": "^4.2.1",
+                "amphp/http-tunnel": "^1.0",
+                "amphp/socket": "^1.1",
+                "guzzlehttp/promises": "^1.4",
+                "nyholm/psr7": "^1.0",
+                "php-http/httplug": "^1.0|^2.0",
+                "psr/http-client": "^1.0",
+                "symfony/dependency-injection": "^5.4|^6.0",
+                "symfony/http-kernel": "^5.4|^6.0",
+                "symfony/process": "^5.4|^6.0",
+                "symfony/stopwatch": "^5.4|^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\HttpClient\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides powerful methods to fetch HTTP resources synchronously or asynchronously",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/http-client/tree/v6.1.7"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-10-28T16:23:08+00:00"
+        },
+        {
+            "name": "symfony/http-client-contracts",
+            "version": "v3.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/http-client-contracts.git",
+                "reference": "fd038f08c623ab5d22b26e9ba35afe8c79071800"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/http-client-contracts/zipball/fd038f08c623ab5d22b26e9ba35afe8c79071800",
+                "reference": "fd038f08c623ab5d22b26e9ba35afe8c79071800",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1"
+            },
+            "suggest": {
+                "symfony/http-client-implementation": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "3.1-dev"
+                },
+                "thanks": {
+                    "name": "symfony/contracts",
+                    "url": "https://github.com/symfony/contracts"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Contracts\\HttpClient\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Test/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Generic abstractions related to HTTP clients",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "abstractions",
+                "contracts",
+                "decoupling",
+                "interfaces",
+                "interoperability",
+                "standards"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/http-client-contracts/tree/v3.1.1"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-04-22T07:30:54+00:00"
+        },
+        {
             "name": "symfony/http-foundation",
             "version": "v6.1.6",
             "source": {
@@ -5251,6 +5470,71 @@
             "time": "2022-05-24T11:49:31+00:00"
         },
         {
+            "name": "symfony/postmark-mailer",
+            "version": "v6.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/postmark-mailer.git",
+                "reference": "5f38d688df43bea507bf0dfe0d0ca6f99221b708"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/postmark-mailer/zipball/5f38d688df43bea507bf0dfe0d0ca6f99221b708",
+                "reference": "5f38d688df43bea507bf0dfe0d0ca6f99221b708",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "symfony/mailer": "^5.4|^6.0"
+            },
+            "require-dev": {
+                "symfony/http-client": "^5.4|^6.0"
+            },
+            "type": "symfony-mailer-bridge",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Mailer\\Bridge\\Postmark\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Postmark Mailer Bridge",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/postmark-mailer/tree/v6.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-04-01T07:15:35+00:00"
+        },
+        {
             "name": "symfony/process",
             "version": "v6.1.3",
             "source": {
@@ -6176,6 +6460,44 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "wildbit/postmark-php",
+            "version": "4.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wildbit/postmark-php.git",
+                "reference": "d27cd97a5efefa72d4ea16c2fa307c22c4e5312c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wildbit/postmark-php/zipball/d27cd97a5efefa72d4ea16c2fa307c22c4e5312c",
+                "reference": "d27cd97a5efefa72d4ea16c2fa307c22c4e5312c",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0|^7.0",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Postmark\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The officially supported client for Postmark (http://postmarkapp.com)",
+            "support": {
+                "issues": "https://github.com/wildbit/postmark-php/issues",
+                "source": "https://github.com/wildbit/postmark-php/tree/4.0.4"
+            },
+            "time": "2022-03-28T18:34:21+00:00"
         },
         {
             "name": "wireui/wireui",

@@ -12,7 +12,8 @@ class Prediction extends Model
     protected $fillable = [
         'user_id',
         'state_id',
-        'user_prediction'
+        'user_prediction',
+        'reason'
     ];
 
     public function user()
@@ -31,7 +32,7 @@ class Prediction extends Model
     protected function userPrediction(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => (string)$value.'%',
+            get: fn ($value) => strval($value).'%',
         );
     }
 }

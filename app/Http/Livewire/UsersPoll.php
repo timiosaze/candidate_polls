@@ -46,12 +46,11 @@ class UsersPoll extends Component
     public function render()
     {
         return view('livewire.users-poll', ['users' => 
-                User::where('name', 'like', '%'.$this->search.'%')
+                User::where('candidate_id', '!=', null)
+                ->where('name', 'like', '%'.$this->search.'%')
                 ->when($this->candidate_id != 0, function ($q) {
                     $q->where('candidate_id', $this->candidate_id);
                 })
-                // ->join('predictions')
-                // ->orderBy('email', 'asc')
                 ->paginate(25)
         ]);
     }

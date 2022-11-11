@@ -22,56 +22,23 @@ class PollController extends Controller
     {
         $users = User::paginate(25);
         $states = State::all();
+
         $predictions = DB::table('users')
                         ->join('candidates', 'users.candidate_id', '=', 'candidates.id')
                         ->join('parties', 'candidates.party_id', '=', 'parties.id')
                         ->join('predictions', 'users.id', '=', 'predictions.user_id')
                         ->join('states', 'predictions.state_id', '=', 'states.id')
-                        ->select('parties.fullname','candidates.name','predictions.user_prediction', 'states.zone')
-                        ->get()
-                        ->groupBy(['fullname', 'zone']);
+                        ->selectRaw("parties.fullname, candidates.name, states.zone, SUM(predictions.user_prediction) as total, COUNT(predictions.user_prediction) as count")
+                        ->groupBy(['fullname', 'name', 'zone'])
+                        ->get();
 
-        
-        // return $userchoice;
-        $keys = ["All Progressives Congress", "People's Democratic Party", "Labour Party", "New Nigeria Peoples Party"];
-        $values = ["South East", "South West", "South South", "North West", "North East", "North Central"];
-        $allzones = array();
-        foreach ($keys as $key) {
-            $zones = [];
-            $zones['zone'] = array();
-            foreach ($values as $value) {
 
-                    $total = 0;
-                    $count = 0;
-                    $last_key = count($predictions[$key][$value]) - 1;
-                    $zone = array();
-
-                    foreach ($predictions[$key][$value] as $index => $each) {
-                        $zones['name'] =  $each->name;
-                        $zones['party'] = $each->fullname;
-                        $total = $total + $each->user_prediction;
-                        $count++;
-                        if($last_key == $index){
-                            $zone['total'] = $total;
-                            $zone['count'] = $count;
-                            $zone['zone'] = $each->zone;
-                            array_push($zones['zone'],$zone);
-                        }
-                    }
-                    
-            }
-            array_push($allzones, $zones);
-        }
-
-        // return $allzones;
-        // foreach($predictions["All Progressives Congress"]["South West"] as $each)
-        // {
-        //     $total = $total + $each->user_prediction;
-        // }               
-        // $value = $total/count($predictions["All Progressives Congress"]["South West"]);
-        // return number_format($value, 2);
-        return view('page.polls', compact('users', 'states', 'allzones'));
+        $predictions = $predictions->groupBy('name');
+        // return $predictions;
+       
+        return view('page.polls', compact('users', 'states', 'predictions'));
     }
+
     public function candidates()
     {
         $candidates = Candidate::all();
@@ -79,15 +46,18 @@ class PollController extends Controller
         return view('page.candidates', compact('candidates'));
 
     }
+
     public function comments()
     {
         return view('page.add-comments');
     }
+
     public function statespoll()
     {
         $states = State::all();
         return view('page.states-poll', compact('states'));
     }
+
     public function store_candidate(Request $request)
     {
         // dd($request);
@@ -110,6 +80,7 @@ class PollController extends Controller
         toast('Candidate successfully stored','success');
         return redirect()->route('pollb');
     }
+
     public function store_comment(Request $request)
     {
         // dd($request);
@@ -134,6 +105,7 @@ class PollController extends Controller
         toast('Comment and Achievement stored','success');
         return redirect()->route('pollc');
     }
+
     public function store_prediction(Request $request)
     {
         
@@ -148,6 +120,7 @@ class PollController extends Controller
         toast('Your states poll saved','success');
         return redirect()->route('pollb');
     }
+
     public function more_polls()
     {
         $winnings = DB::table('users')
@@ -155,60 +128,28 @@ class PollController extends Controller
                         ->join('parties', 'candidates.party_id', '=', 'parties.id')
                         ->join('predictions', 'users.id', '=', 'predictions.user_id')
                         ->join('states', 'predictions.state_id', '=', 'states.id')
-                        ->select('users.name', 'candidates.name as candidate','parties.fullname','predictions.user_prediction', 'states.state')
-                        ->get()
-                        ->groupBy('name');
+                        ->where('predictions.user_prediction', '>', 50)
+                        ->selectRaw('users.name, candidates.name as candidate, parties.name as party, COUNT(states.state) as count')
+                        ->groupBy(['name', 'candidate', 'party'])
+                        ->get();
+
        
-        $userchoice = array();
-        foreach ($winnings as $key => $value) {
-            # code...
-            $winning = [];
-            $winning['wins'] = array();
-            foreach ($value as $user) {
-                # code...
-                $winning['name'] = $user->name;
-                $winning['party'] = $user->fullname;
-                $winning['candidate'] = $user->candidate;
-                if($user->user_prediction > 50){
-                    array_push($winning['wins'], $user->state);
-                }
-                if( !next( $value ) ) {
-         
-                   $winning['count'] = count($winning['wins']);
-                }
-            }
+        $states = DB::table('users')
+                        ->join('candidates', 'users.candidate_id', '=', 'candidates.id')
+                        ->join('parties', 'candidates.party_id', '=', 'parties.id')
+                        ->join('predictions', 'users.id', '=', 'predictions.user_id')
+                        ->join('states', 'predictions.state_id', '=', 'states.id')
+                        ->where('predictions.user_prediction', '>', 50)
+                        ->selectRaw('users.name, states.state')
+                        ->groupBy(['name', 'state'])
+                        ->get();
 
-            array_push($userchoice, $winning);
-        }
-        
-        // usort($userchoice, array($this, "cmp"));
 
-        // $userchoice = $this->array_paginate($userchoice, 30);
-
-        // return $userchoice;
+        // return $states;
+        // return $winnings;                
         
 
-        return view('page.winningpolls', compact('userchoice'));
+        return view('page.winningpolls', compact('states'));
     }
-    public function cmp($a, $b)
-    {
-        return strtolower($a['candidate']) <=> strtolower($b['candidate']);
-    }
-     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    public function array_paginate($items,$perPage)
-    {
-        $pageStart = \Request::get('page', 1);
-        // Start displaying items from this number;
-        $offSet = ($pageStart * $perPage) - $perPage; 
-
-        // Get only the items you need using array_slice
-        $itemsForCurrentPage = array_slice($items, $offSet, $perPage, true);
-
-        return new LengthAwarePaginator($itemsForCurrentPage, count($items), $perPage,Paginator::resolveCurrentPage(), array('path' => Paginator::resolveCurrentPath()));
-    }
-
+    
 }
